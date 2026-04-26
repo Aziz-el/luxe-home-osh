@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store/useStore';
 import { showToast } from '../utils';
-
 export default function Login() {
-  const [password, setPassword] = useState('');
+  const [password1, setPassword] = useState('');
   const setAdminAuth = useStore(state => state.setAdminAuth);
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (password === 'admin123') {
+    if (password1 === import.meta.env.VITE_PASSWORD) {
       setAdminAuth(true);
       showToast('Успешный вход', 'success');
       navigate('/admin');
@@ -26,10 +25,10 @@ export default function Login() {
         <form onSubmit={handleLogin}>
           <div className="form-group">
             <label>Пароль</label>
-            <input 
-              type="password" 
-              value={password} 
-              onChange={e => setPassword(e.target.value)} 
+            <input
+              type="password"
+              value={password1}
+              onChange={e => setPassword(e.target.value)}
               placeholder="Введите пароль"
               required
             />
